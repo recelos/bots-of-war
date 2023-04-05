@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 1640250555}
   m_Layer: 0
   m_Name: Bot
-  m_TagString: Untagged
+  m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -609,8 +609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5d318fff0fd5044ae4997fd6715452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  minDistanceToWall: 1
+  _speed: 3
+  _minDistanceToWall: 1
 --- !u!1 &2023113596
 GameObject:
   m_ObjectHideFlags: 0
