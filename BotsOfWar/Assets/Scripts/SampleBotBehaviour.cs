@@ -17,9 +17,4 @@ public class SampleBotBehaviour : IBehaviour
         var nextPosition = currentPosition + movementDirection * (Speed * Time.deltaTime);
         return nextPosition;
     }
-
-    public void ChangeTargetPosition(Vector3 newTargetPosition)
-    {
-        _targetPosition = newTargetPosition;
-    }
 }

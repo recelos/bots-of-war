@@ -2,18 +2,22 @@ using UnityEngine;
 
 public class BotManager : MonoBehaviour
 {
-    private GameObject _bot;
-    private SampleBotBehaviour _sampleBotBehaviour;
+    private GameObject[] _bots;
+    private IBehaviour _sampleBotBehaviour;
     private void Start()
     {
-        _bot = GameObject.FindGameObjectWithTag("Bot");
-        _sampleBotBehaviour = new SampleBotBehaviour(new Vector3(100,100));
+        _bots = GameObject.FindGameObjectsWithTag("Bot");
+        _sampleBotBehaviour = new SampleBotBehaviour(new Vector3(1,1));
     }
 
+    // this is expensive, will fix later
     private void Update()
     {
-        var nextPosition = _sampleBotBehaviour.GetNextPosition(_bot.transform.position);
-        _bot.transform.position = nextPosition;
+        foreach (var bot in _bots)
+        {
+            var nextPosition = _sampleBotBehaviour.GetNextPosition(bot.transform.position);
+            bot.transform.position = nextPosition;
+        }
+        
     }
-
 }
