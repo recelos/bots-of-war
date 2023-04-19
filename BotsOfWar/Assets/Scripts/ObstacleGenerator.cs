@@ -4,9 +4,7 @@ using UnityEngine.UIElements;
 public class ObstacleGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _prefab;
-
     [SerializeField] private float _density;
-
     private readonly Vector3 [] _spawnPoints =     // Defined in code coordinates
         {
             new Vector3(-1.67f, 1.79f, 0),
