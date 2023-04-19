@@ -1,40 +1,38 @@
-// Skrypt œledzi, czy gracze na mapie wesz³y w kontakt z pociskiem. Jeœli tak, to odbierane jest im zdrowie
+// The script tracks whether players on the map have come into contact with a bullet. If so, they lose health
 
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthTracker : MonoBehaviour
 {
-    public List<GameObject> players;
+    private List<GameObject> players;
 
     private void Start()
     {
-        // Pobierz wszystkie obiekty z tagiem "Player" i dodaj je do listy "players"
-        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+        // Get all objects with the tag "Player" and add them to the "players" list
+        var playerObjects = GameObject.FindGameObjectsWithTag("Player");
 
-        foreach (GameObject playerObject in playerObjects)
+        foreach (var playerObject in playerObjects)
             players.Add(playerObject);
     }
 
     private void Update()
     {
-        foreach (GameObject player in players)
+        foreach (var player in players)
         {
-            // SprawdŸ czy gracz wszed³ w interakcjê z innym obiektem
+            // Check if the player has interacted with another object
             var collider = Physics2D.OverlapBox(player.GetComponent<BoxCollider2D>().transform.position,
                 player.GetComponent<BoxCollider2D>().size, 0f);
 
             if(collider.CompareTag("Bullet"))
             {
                 var playerHealth = player.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
+                if (playerHealth == null || collider == null)
                 {
-                    if (collider != null)
-                        // Wy³¹cz komponent BoxCollider2D uderzaj¹cego obiektu (po to, ¿eby jeden pocisk zabiera³ dok³adnie jedno zdrowie)
-                        collider.enabled = false;
-
-                    playerHealth.TakeDamage(1); // Przyjmijmy, ¿e gracz ma 100 HP
+                    continue;
                 }
+                collider.enabled = false;
+                playerHealth.TakeDamage(1);
             }
         }
     }

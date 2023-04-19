@@ -11,16 +11,16 @@ public class PlayerHealth : MonoBehaviour
         _currentHealth = _startingHealth;
         _dead = false;
     }
-    public void TakeDamage(float _damage)
+    public void TakeDamage(float damage)
     {
-        // Odejmij punkty zdrowia. 0 i _startingHealth to minimalna i maksymalna wartoœæ pasku zdrowia
-        _currentHealth = Mathf.Clamp(_currentHealth - _damage, 0, _startingHealth);
+        // Subtract health points. Set 0 and _startingHealth as the minimum and maximum values for the health bar
+        _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _startingHealth);
 
         if (_currentHealth <= 0)
         {
             if (!_dead)
             {
-                gameObject.SetActive(false); // Kiedy gracz straci ¿ycie, to jest usuwany ze sceny (przyk³ad)
+                gameObject.SetActive(false); // When the player loses all their health, they are removed from the scene (example)
                 _dead = true;
             }
         }
