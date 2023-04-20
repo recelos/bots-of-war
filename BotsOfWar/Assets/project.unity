@@ -1623,6 +1623,10 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 8282535851006700514, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
 --- !u!1 &1495760609
