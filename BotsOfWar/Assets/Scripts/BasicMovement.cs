@@ -9,12 +9,21 @@ public class BasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-        _animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
-        Vector3 horizontal = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        transform.position = transform.position + horizontal * Time.deltaTime;
-        Vector3 vertical = new Vector3(0, Input.GetAxis("Vertical"), 0);
-        transform.position = transform.position + vertical * Time.deltaTime;
+        if (movement.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (movement.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        _animator.SetFloat("Horizontal", movement.x);
+        _animator.SetFloat("Vertical", movement.y);
+        _animator.SetFloat("Magnitude", movement.magnitude);
+
+        transform.position = transform.position + movement * Time.deltaTime;
     }
 }

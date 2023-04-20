@@ -123,29 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &60114241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 724603271206408803, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
-  m_PrefabInstance: {fileID: 1017903306}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &60114243 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6343168272734774183, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
-  m_PrefabInstance: {fileID: 1017903306}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &60114245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60114241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea13ec48e359097479283bec7b80b458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 60114243}
 --- !u!1 &758746644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,11 +1561,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 708093754151157315, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.43
+      value: 9.95
       objectReference: {fileID: 0}
     - target: {fileID: 708093754151157315, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.55
+      value: -13.71
       objectReference: {fileID: 0}
     - target: {fileID: 708093754151157315, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1629,6 +1606,18 @@ PrefabInstance:
     - target: {fileID: 5352699341863928721, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282535851006700514, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282535851006700514, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282535851006700514, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d10feba128b8c9345ae9a0aedfeecf58, type: 3}
