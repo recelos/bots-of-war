@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     [SerializeField]private Animator _animator;
+    private bool _facesRight;
 
     // Update is called once per frame
     void Update()
@@ -14,10 +15,12 @@ public class BasicMovement : MonoBehaviour
         if (movement.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            _facesRight = false;
         }
         else if (movement.x > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            _facesRight = true;
         }
 
         _animator.SetFloat("Horizontal", movement.x);
@@ -25,5 +28,9 @@ public class BasicMovement : MonoBehaviour
         _animator.SetFloat("Magnitude", movement.magnitude);
 
         transform.position = transform.position + movement * Time.deltaTime;
+    }
+
+    public bool isFacingRight(){
+        return _facesRight;
     }
 }
