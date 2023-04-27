@@ -19,10 +19,11 @@ public class BasicMovement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
-        
+
         _animator.SetFloat("Horizontal", movement.x);
         _animator.SetFloat("Vertical", movement.y);
         _animator.SetFloat("Magnitude", movement.magnitude);
+        
         transform.position = transform.position + movement * Time.deltaTime;
     }
 }
