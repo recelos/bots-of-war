@@ -9,7 +9,7 @@ public class BotShoot : MonoBehaviour
     private BasicMovement _basicMovement;
     private float _fireRate;
     private float _timeSinceLastShot;
-    private Vector2 _direction, _mousePos;
+    
     private int _damage;
     void Start()
     {
@@ -21,18 +21,6 @@ public class BotShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //zczytanie pozycji myszy
-        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //obliczenie kierunku w ktory ma byc obrocony central point
-        _direction = _mousePos - (Vector2) _centralPoint.position;
-        //obrocenie central pointa o kat
-        
-        if(_basicMovement.isFacingRight()){
-            _centralPoint.transform.right = _direction;
-        }else{
-             _centralPoint.transform.right = -_direction;
-        }
-        
 
         //ile czasu uplynelo od ostatniego strzlu
         _timeSinceLastShot += Time.deltaTime;
@@ -45,6 +33,7 @@ public class BotShoot : MonoBehaviour
     }
 
     private void Shoot(){
+        ChangeShootPointPosition();
         //stworzenie pocisku w miejsce wystrzalu z obrotem wystrzalu
         GameObject bullet = Instantiate(_bullet,_shootPoint.position, _shootPoint.rotation);
         //nadanie kuli predkosci o zhardkodowana wartosc
@@ -55,6 +44,20 @@ public class BotShoot : MonoBehaviour
         //ustawienie obrazen pocisku
         bullet.GetComponent<Bullet>().setDamage(_damage);
       
+    }
+
+    private void ChangeShootPointPosition(){
+        //zczytanie pozycji myszy
+        Vector2 _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //obliczenie kierunku w ktory ma byc obrocony central point
+        Vector2 _direction = _mousePos - (Vector2) _centralPoint.position;
+        //obrocenie central pointa o kat
+        
+        if(_basicMovement.isFacingRight()){
+            _centralPoint.transform.right = _direction;
+        }else{
+             _centralPoint.transform.right = -_direction;
+        }
     }
     //sprawdza czy uplynelo wystarczajaca czasu od poprzedniego strzalu
     private bool CanShoot(){
