@@ -10,20 +10,19 @@ public class BasicMovement : MonoBehaviour
     void Update()
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-
+    
         if (movement.x < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         else if (movement.x > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            GetComponent<SpriteRenderer>().flipX = false;
         }
-
+        
         _animator.SetFloat("Horizontal", movement.x);
         _animator.SetFloat("Vertical", movement.y);
         _animator.SetFloat("Magnitude", movement.magnitude);
-
         transform.position = transform.position + movement * Time.deltaTime;
     }
 }
