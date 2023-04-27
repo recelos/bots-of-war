@@ -4,19 +4,11 @@ using UnityEngine.UIElements;
 public class ObstacleGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _prefab;
-    [SerializeField] private GameObject _pickUp1;
-    [SerializeField] private GameObject _pickUp2;
-    [SerializeField] private GameObject _pickUp3;
-    [SerializeField] private GameObject _pickUp4;
-    [SerializeField] private GameObject _pickUp5;
-    [SerializeField] private float _density;
-    private readonly Vector3 [] _spawnPoints =     
-    {
-        
-    };
-
+    [SerializeField] private GameObject _parentOfCoords;
+    private Vector3 [] _spawnPoints;
     private void Start()
     {
+        ReadSpawnPoints();
         ToggleObstacles();
     }
 
@@ -29,6 +21,21 @@ public class ObstacleGenerator : MonoBehaviour
 
             // Assign this object to the parent which keeps this script
             child.transform.SetParent(transform);
+        }
+    }
+
+    private void ReadSpawnPoints()
+    {
+        // Get all children of the parent object
+        var children = _parentOfCoords.GetComponentsInChildren<Transform>();
+
+        // Create array of Vector3
+        _spawnPoints = new Vector3[children.Length - 1];
+
+        // Fill array with Vector3 coordinates
+        for (int i = 1; i < children.Length; i++)
+        {
+            _spawnPoints[i - 1] = children[i].position;
         }
     }
 }

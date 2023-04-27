@@ -6,11 +6,10 @@ public class BasicMovement : MonoBehaviour
 {
     [SerializeField]private Animator _animator;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-    
+
         if (movement.x < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
@@ -23,7 +22,7 @@ public class BasicMovement : MonoBehaviour
         _animator.SetFloat("Horizontal", movement.x);
         _animator.SetFloat("Vertical", movement.y);
         _animator.SetFloat("Magnitude", movement.magnitude);
-        
+
         transform.position = transform.position + movement * Time.deltaTime;
     }
 }
