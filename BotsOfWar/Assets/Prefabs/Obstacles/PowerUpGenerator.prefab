@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6730518746884766074}
   - component: {fileID: 6730518746884766075}
   m_Layer: 0
-  m_Name: ObstacleGenerator
+  m_Name: PowerUpGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

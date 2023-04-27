@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8282535851006700514}
   - component: {fileID: 6371897713773350475}
   - component: {fileID: 3587453392694855562}
+  - component: {fileID: 8613961554949566456}
   m_Layer: 0
   m_Name: Bot0
   m_TagString: Untagged
@@ -159,3 +160,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.15}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &8613961554949566456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648518205478612982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60435e4e2f51e8049960e60a467d70c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.5

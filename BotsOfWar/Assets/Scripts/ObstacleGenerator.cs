@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ObstacleGenerator : MonoBehaviour
+public class PowerUpGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _prefab;
     [SerializeField] private GameObject _parentOfCoords;
