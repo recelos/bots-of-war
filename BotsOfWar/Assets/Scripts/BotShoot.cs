@@ -10,9 +10,7 @@ public class BotShoot : MonoBehaviour
     private BasicMovement _basicMovement;
     private float _fireRate;
     private float _timeSinceLastShot;
-
     private const int _bulletSpeed = 400;
-    
     private int _damage;
     void Start()
     {
