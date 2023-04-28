@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class BotShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject _bullet, _bot;
-    [SerializeField] private Transform _centralPoint, _shootPoint;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private Transform _centralPoint;
+    [SerializeField] private Transform _shootPoint;
     private BasicMovement _basicMovement;
     private float _fireRate;
     private float _timeSinceLastShot;
+
+    private const int _bulletSpeed = 400;
     
     private int _damage;
     void Start()
     {
-        //szybkostrzelnosc (500 pociskow na minute)
+        //fireRate (500 hunderd bullets per minute)
         _fireRate = 500;
-        _basicMovement =  _bot.GetComponent<BasicMovement>();
+        _basicMovement =  GetComponent<BasicMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //ile czasu uplynelo od ostatniego strzlu
+        //how much time has passed since last shot
         _timeSinceLastShot += Time.deltaTime;
 
         if(Input.GetMouseButton(0) && CanShoot()){
@@ -34,32 +36,31 @@ public class BotShoot : MonoBehaviour
 
     private void Shoot(){
         ChangeShootPointPosition();
-        //stworzenie pocisku w miejsce wystrzalu z obrotem wystrzalu
+        //create bullet at shootPoint position with shootPoint rotation
         GameObject bullet = Instantiate(_bullet,_shootPoint.position, _shootPoint.rotation);
-        //nadanie kuli predkosci o zhardkodowana wartosc
+        //give bullet's speed
         if(_basicMovement.isFacingRight())
-            bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * 400);
+            bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * _bulletSpeed);
         else
-            bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * (-400));
-        //ustawienie obrazen pocisku
-        bullet.GetComponent<Bullet>().setDamage(_damage);
+            bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * (-_bulletSpeed));
+        //set bullet's damage
+        bullet.GetComponent<Bullet>().Damage = _damage;
       
     }
 
     private void ChangeShootPointPosition(){
-        //zczytanie pozycji myszy
-        Vector2 _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //obliczenie kierunku w ktory ma byc obrocony central point
-        Vector2 _direction = _mousePos - (Vector2) _centralPoint.position;
-        //obrocenie central pointa o kat
-        
+        //read mouse position
+        var _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //calculate direction from bot to mouse position
+        var _direction = _mousePos - _centralPoint.position;
+        //rotate central point
         if(_basicMovement.isFacingRight()){
             _centralPoint.transform.right = _direction;
         }else{
              _centralPoint.transform.right = -_direction;
         }
     }
-    //sprawdza czy uplynelo wystarczajaca czasu od poprzedniego strzalu
+    //checks if bot is able to shoot
     private bool CanShoot(){
         return _timeSinceLastShot > 1f / (_fireRate / 60f);
     }

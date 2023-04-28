@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    
-    private int _damage;
-    void Start(){
+    public int Damage {get; set; }
+    void Start()
+    {
         transform.SetParent(GameObject.Find("BulletContainer").transform);
     }
-    private void OnCollisionEnter2D(Collision2D collision2D){
-        //zadawanie obrazen tutaj
+    private void OnCollisionEnter2D(Collision2D collision2D)
+    {
+        // TODO: deal damage
         Destroy(gameObject);
-    }
-
-    public void setDamage(int damage){
-        this._damage = damage;
     }
 }
