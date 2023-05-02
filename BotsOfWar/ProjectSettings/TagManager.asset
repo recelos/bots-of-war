@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Obstacle
   - Wall
   - Floor
+  - Projectile
   layers:
   - Default
   - TransparentFX
