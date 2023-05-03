@@ -3,37 +3,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthTracker : MonoBehaviour
+public class HealthSystem : MonoBehaviour
 {
-    private List<GameObject> players;
+    private List<GameObject> _players;
 
     private void Start()
     {
         // Get all objects with the tag "Player" and add them to the "players" list
         var playerObjects = GameObject.FindGameObjectsWithTag("Player");
 
-        foreach (var playerObject in playerObjects)
-            players.Add(playerObject);
+        _players = new List<GameObject>();
+        _players.AddRange(playerObjects);
     }
 
     private void Update()
     {
-        foreach (var player in players)
+        int i = 0; // For testing only!
+
+        foreach (var player in _players)
         {
             // Check if the player has interacted with another object
-            var collider = Physics2D.OverlapBox(player.GetComponent<BoxCollider2D>().transform.position,
-                player.GetComponent<BoxCollider2D>().size, 0f);
+            var collider = Physics2D.OverlapCircle(player.GetComponent<CircleCollider2D>().transform.position,
+                player.GetComponent<CircleCollider2D>().radius);
 
-            if(collider.CompareTag("Bullet"))
+            if (collider != null)
             {
-                var playerHealth = player.GetComponent<PlayerHealth>();
-                if (playerHealth == null || collider == null)
+                // If the collision is with the bullet
+                if (collider.CompareTag("Projectile"))
                 {
-                    continue;
+                    // For testing only!
+                    Debug.Log("PLAYER " + i.ToString() + " HIT");
+
+                    var playerHealth = player.GetComponent<PlayerHealth>();
+                    if (playerHealth == null)
+                    {
+                        continue;
+                    }
+                    playerHealth.TakeDamage(1);
                 }
-                collider.enabled = false;
-                playerHealth.TakeDamage(1);
             }
+            i++; // For testing only!
         }
     }
 }
