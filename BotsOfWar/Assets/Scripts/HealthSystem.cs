@@ -18,7 +18,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Update()
     {
-        int i = 0; // For testing only!
+        // int i = 0; // For testing only!
 
         foreach (var player in _players)
         {
@@ -32,7 +32,7 @@ public class HealthSystem : MonoBehaviour
                 if (collider.CompareTag("Projectile"))
                 {
                     // For testing only!
-                    Debug.Log("PLAYER " + i.ToString() + " HIT");
+                    // Debug.Log("PLAYER " + i.ToString() + " HIT");
 
                     var playerHealth = player.GetComponent<PlayerHealth>();
                     if (playerHealth == null)
@@ -42,7 +42,7 @@ public class HealthSystem : MonoBehaviour
                     playerHealth.TakeDamage(1);
                 }
             }
-            i++; // For testing only!
+            // i++; // For testing only!
         }
     }
 }

@@ -46,12 +46,13 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // For testing only!
-        Debug.Log(_currentHealth);
+        // Debug.Log(_currentHealth);
 
         if (_currentHealth <= 0)
         {
             if (!_dead)
             {
+                this.GetComponent<BasicMovement>().enabled = false;
                 // The dead animation starts
                 _animator.SetTrigger("Dead");
                 var comp = _healthBar.GetComponentInParent<HealthBar>();
