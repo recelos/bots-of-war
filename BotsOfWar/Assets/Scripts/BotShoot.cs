@@ -33,30 +33,13 @@ public class BotShoot : MonoBehaviour
     }
 
     private void Shoot(){
-        ChangeShootPointPosition();
         //create bullet at shootPoint position with shootPoint rotation
-        GameObject bullet = Instantiate(_bullet,_shootPoint.position, _shootPoint.rotation);
+        GameObject bullet = Instantiate(_bullet, this.transform.position, this.transform.rotation);
         //give bullet's speed
-        if(_basicMovement.isFacingRight())
-            bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * _bulletSpeed);
-        else
-            bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * (-_bulletSpeed));
+        bullet.GetComponent<Rigidbody2D>().AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position).normalized *_bulletSpeed);
         //set bullet's damage
         bullet.GetComponent<Bullet>().Damage = _damage;
-      
-    }
-
-    private void ChangeShootPointPosition(){
-        //read mouse position
-        var _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //calculate direction from bot to mouse position
-        var _direction = _mousePos - _centralPoint.position;
-        //rotate central point
-        if(_basicMovement.isFacingRight()){
-            _centralPoint.transform.right = _direction;
-        }else{
-             _centralPoint.transform.right = -_direction;
-        }
+        bullet.GetComponent<Bullet>().Source = this.gameObject;
     }
     //checks if bot is able to shoot
     private bool CanShoot(){
