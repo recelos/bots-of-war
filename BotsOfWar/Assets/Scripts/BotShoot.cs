@@ -36,7 +36,8 @@ public class BotShoot : MonoBehaviour
         //create bullet at shootPoint position with shootPoint rotation
         GameObject bullet = Instantiate(_bullet, this.transform.position, this.transform.rotation);
         //give bullet's speed
-        bullet.GetComponent<Rigidbody2D>().AddForce((Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position).normalized *_bulletSpeed);
+        bullet.GetComponent<Rigidbody2D>().AddForce( ((Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2) this.transform.position).normalized *_bulletSpeed);
+        Debug.Log((Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position).normalized);
         //set bullet's damage
         bullet.GetComponent<Bullet>().Damage = _damage;
         bullet.GetComponent<Bullet>().Source = this.gameObject;
