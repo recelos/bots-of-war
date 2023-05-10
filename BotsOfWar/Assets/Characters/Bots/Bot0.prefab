@@ -207,8 +207,8 @@ GameObject:
   - component: {fileID: 6247146809805760316}
   - component: {fileID: 4546071576409452285}
   - component: {fileID: 4909207504302285306}
-  - component: {fileID: 2921547195409897522}
   - component: {fileID: 304815113431140813}
+  - component: {fileID: 3150390651607112428}
   m_Layer: 0
   m_Name: Bot0
   m_TagString: Player
@@ -273,7 +273,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 155186850, guid: d622bce2a6896d14e876a9ae48164888, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -358,20 +358,6 @@ MonoBehaviour:
   _bullet: {fileID: 5650738134256993966, guid: 12b9b13c8f2903243ac9dc3d549430db, type: 3}
   _centralPoint: {fileID: 1071810365465872306}
   _shootPoint: {fileID: 1071810364676311332}
---- !u!114 &2921547195409897522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5646686501195957889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe19c3d4eb5e8bc46ace892ca92b3d5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 6247146809805760316}
-  _startingHealth: 10
 --- !u!114 &304815113431140813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +371,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 6247146809805760316}
+--- !u!114 &3150390651607112428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5646686501195957889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe19c3d4eb5e8bc46ace892ca92b3d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6247146809805760316}
+  _startingHealth: 10
 --- !u!1 &7554360196491287044
 GameObject:
   m_ObjectHideFlags: 0

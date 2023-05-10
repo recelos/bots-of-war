@@ -11,14 +11,21 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
-        // TODO: deal damage
         Destroy(gameObject);
 
         // (1 bullet = 1 damage point). If the bullet is destroyed then the player can receive damage from other bullets
         if (collision2D.gameObject.CompareTag("Player"))
         {
+
             var playerHealth = collision2D.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.SetTakingDamage(false);
+
+            if (playerHealth != null)
+            {
+                    // For testing only!
+                    // Debug.Log("PLAYER HIT");
+
+                playerHealth.TakeDamage(Damage);
+            }
         }
     }
 

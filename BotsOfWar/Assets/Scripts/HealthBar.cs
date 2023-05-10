@@ -1,3 +1,6 @@
+// This is rather additional script to make health bar work properly. It makes health bar not moving when the player can change
+// direction of its movement (Update() method).
+
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour
@@ -10,6 +13,8 @@ public class HealthBar : MonoBehaviour
     {
         _healthBar = transform.Find("HealthBar1");
     }
+
+    // Make the health bar not moving alongside with the player
     private void Update()
     {
         _posX = _healthBar.transform.localPosition.x;
@@ -26,6 +31,8 @@ public class HealthBar : MonoBehaviour
             _directionChange = false;
         }
     }
+
+    // The method is used in PlayerHealth.cs script. It disables health bar after the player is dead.
     public void DeactivateBar()
     {
         var children = new GameObject[transform.childCount];
