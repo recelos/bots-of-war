@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
 
             // Subtract health points. Set 0 and _startingHealth as the minimum and maximum values for the health bar
             _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _startingHealth);
-
+            Debug.Log(_currentHealth);
             // Don't hurt the player multiple times with the same bullet
             _takingDamage = true;
 

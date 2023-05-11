@@ -13,17 +13,18 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
         if(collider2D.gameObject.Equals(Source) || collider2D.gameObject.CompareTag("Projectile"))
-            return;
-
-        // TODO: deal damage
-        Destroy(gameObject);
+           return;
 
         // (1 bullet = 1 damage point). If the bullet is destroyed then the player can receive damage from other bullets
         if (collider2D.gameObject.CompareTag("Player"))
         {
             var playerHealth = collider2D.gameObject.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(Damage);
             playerHealth.SetTakingDamage(false);
         }
+
+         // TODO: deal damage
+        Destroy(gameObject);
     }
 
 }
