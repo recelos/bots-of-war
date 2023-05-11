@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
         // (1 bullet = 1 damage point). If the bullet is destroyed then the player can receive damage from other bullets
         if (collider2D.gameObject.CompareTag("Player"))
         {
-            var playerHealth = collision2D.gameObject.GetComponent<PlayerHealth>();
+            var playerHealth = collider2D.gameObject.GetComponent<PlayerHealth>();
 
             if (playerHealth != null)
             {
