@@ -16,7 +16,6 @@ public class BotShoot : MonoBehaviour
         //fireRate (500 hunderd bullets per minute)
         _fireRate = 500;
         _basicMovement =  GetComponent<BasicMovement>();
-        _damage = 1;
     }
 
     // Update is called once per frame
