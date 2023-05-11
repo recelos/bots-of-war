@@ -29,8 +29,5 @@ public class BasicMovement : MonoBehaviour
 
         transform.position = transform.position + movement * Time.deltaTime;
     }
-
-    public bool IsFacingRight(){
-        return _facesRight;
-    }
+    
 }

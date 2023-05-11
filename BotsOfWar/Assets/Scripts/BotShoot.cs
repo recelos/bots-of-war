@@ -5,7 +5,7 @@ using UnityEngine;
 public class BotShoot : MonoBehaviour
 {
     [SerializeField] private GameObject _bullet;
-    [SerializeField] private float _fireRatePerMinute;
+    [SerializeField] private float _fireRatePerMinute = 500;
     [SerializeField] private int _bulletSpeed = 400;
     [SerializeField] private int _damage;
     private BasicMovement _basicMovement;
