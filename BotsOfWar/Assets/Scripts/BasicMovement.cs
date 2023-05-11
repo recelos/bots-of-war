@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     [SerializeField]private Animator _animator;
+    private bool _facesRight;
 
     public void Update()
     {
@@ -25,4 +26,5 @@ public class BasicMovement : MonoBehaviour
 
         transform.position = transform.position + movement * Time.deltaTime;
     }
+    
 }
