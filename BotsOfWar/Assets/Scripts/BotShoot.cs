@@ -44,4 +44,12 @@ public class BotShoot : MonoBehaviour
     private bool CanShoot(){
         return _timeSinceLastShot > 1f / (_fireRatePerMinute / 60f);
     }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.CompareTag("PickUp"))
+        {
+            _damage += 100;
+        }
+    }
 }

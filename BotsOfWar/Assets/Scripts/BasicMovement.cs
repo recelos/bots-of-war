@@ -5,11 +5,18 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     [SerializeField]private Animator _animator;
-    private bool _facesRight;
+    [SerializeField]private float _moveSpeed = 5f;
+    Rigidbody2D _rigidbody2D;
 
-    public void Update()
+    void Start()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (movement.x < 0)
         {
@@ -23,8 +30,7 @@ public class BasicMovement : MonoBehaviour
         _animator.SetFloat("Horizontal", movement.x);
         _animator.SetFloat("Vertical", movement.y);
         _animator.SetFloat("Magnitude", movement.magnitude);
-
-        transform.position = transform.position + movement * Time.deltaTime;
+        
+        _rigidbody2D.AddForce(movement * _moveSpeed);
     }
-    
 }
