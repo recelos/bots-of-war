@@ -5,18 +5,17 @@ using UnityEngine;
 public class BotShoot : MonoBehaviour
 {
     [SerializeField] private GameObject _bullet;
-    [SerializeField] private Transform _centralPoint;
-    [SerializeField] private Transform _shootPoint;
+    [SerializeField] private float _fireRate;
+    [SerializeField] private int _bulletSpeed = 400;
+    [SerializeField] private int _damage;
     private BasicMovement _basicMovement;
-    private float _fireRate;
     private float _timeSinceLastShot;
-    private const int _bulletSpeed = 400;
-    private int _damage;
+    
     void Start()
     {
         //fireRate (500 hunderd bullets per minute)
         _fireRate = 500;
-        _basicMovement =  GetComponent<BasicMovement>();
+        _basicMovement = GetComponent<BasicMovement>();
     }
 
     // Update is called once per frame
@@ -35,14 +34,13 @@ public class BotShoot : MonoBehaviour
     private void Shoot(){
         //create bullet at shootPoint position with shootPoint rotation
         GameObject bullet = Instantiate(_bullet, this.transform.position, this.transform.rotation);
-        //give bullet's speed
+        //give bullet a speed
         bullet.GetComponent<Rigidbody2D>().AddForce( ((Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2) this.transform.position).normalized *_bulletSpeed);
-        Debug.Log((Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position).normalized);
-        //set bullet's damage
+        //set bullet a damage
         bullet.GetComponent<Bullet>().Damage = _damage;
         bullet.GetComponent<Bullet>().Source = this.gameObject;
     }
-    //checks if bot is able to shoot
+    //checks if the bot is able to shoot
     private bool CanShoot(){
         return _timeSinceLastShot > 1f / (_fireRate / 60f);
     }
