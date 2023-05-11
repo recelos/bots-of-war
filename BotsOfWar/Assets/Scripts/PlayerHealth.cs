@@ -6,8 +6,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private float _startingHealth;
-    private float _currentHealth; // current health of the player
-    private bool _dead; // determines whether player is dead or not
+    private float _currentHealth;
+    private bool _dead;
     private Transform _healthBar; // health bar of the player
     private float _healthBarDecrement; // how much should the health bar decrease after receiving a single hit
 
