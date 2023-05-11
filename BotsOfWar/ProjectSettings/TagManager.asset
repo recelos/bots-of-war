@@ -7,7 +7,6 @@ TagManager:
   - Obstacle
   - Wall
   - Floor
-  - PickUp
   - Projectile
   layers:
   - Default
