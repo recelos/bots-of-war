@@ -9,12 +9,16 @@ public class FieldOfView : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("FindTargetsWithDelay", .2f);
+        StartCoroutine(FindTargetsWithDelay(.2f));
     }
 
-    private void Update()
+    IEnumerator<WaitForSeconds> FindTargetsWithDelay(float delay)
     {
-        FindVisibleTargets();
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            FindVisibleTargets();
+        }
     }
 
     // Field of view in 2D space
