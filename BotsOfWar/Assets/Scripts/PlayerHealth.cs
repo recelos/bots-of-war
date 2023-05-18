@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private float _startingHealth;
+    private float _startingHealth;
     private float _currentHealth;
     private bool _dead;
     private Transform _healthBar; // health bar of the player
     private float _healthBarDecrement; // how much should the health bar decrease after receiving a single hit
+    
 
     private void Awake()
     {
@@ -65,5 +66,11 @@ public class PlayerHealth : MonoBehaviour
     {
         // When the player loses all their health, they are removed from the scene
         gameObject.SetActive(false);
+    }
+    
+    public void SetHealth(float health)
+    {
+        _startingHealth = health;
+        _currentHealth = _startingHealth;
     }
 }

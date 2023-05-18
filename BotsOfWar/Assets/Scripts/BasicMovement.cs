@@ -5,7 +5,7 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     [SerializeField]private Animator _animator;
-    [SerializeField]private float _moveSpeed = 5f;
+    private float _moveSpeed;
     Rigidbody2D _rigidbody2D;
 
     void Start()
@@ -32,5 +32,10 @@ public class BasicMovement : MonoBehaviour
         _animator.SetFloat("Magnitude", movement.magnitude);
         
         _rigidbody2D.AddForce(movement * _moveSpeed);
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        _moveSpeed = speed;
     }
 }
