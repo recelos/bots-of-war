@@ -144,10 +144,9 @@ GameObject:
   - component: {fileID: 8948282611395674773}
   - component: {fileID: 6247146809805760316}
   - component: {fileID: 1828383189968124265}
-  - component: {fileID: 4909207504302285306}
   - component: {fileID: 2921547195409897522}
   - component: {fileID: 304815113431140813}
-  - component: {fileID: 7954945122314825876}
+  - component: {fileID: 5925821776685554854}
   m_Layer: 0
   m_Name: Bot0
   m_TagString: Player
@@ -297,19 +296,6 @@ MonoBehaviour:
   _fireRatePerMinute: 500
   _bulletSpeed: 400
   _damage: 0
---- !u!114 &4909207504302285306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5646686501195957889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60435e4e2f51e8049960e60a467d70c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0.5
 --- !u!114 &2921547195409897522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 6247146809805760316}
   _moveSpeed: 0.75
---- !u!114 &7954945122314825876
+--- !u!114 &5925821776685554854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -350,9 +336,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e8ef21b3edf4a44b32208b7a530936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
-  angle: 360
-  obstacleMask:
+  _radius: 5
+  _angle: 360
+  _obstacleMask:
     serializedVersion: 2
     m_Bits: 8
 --- !u!1 &7554360196491287044

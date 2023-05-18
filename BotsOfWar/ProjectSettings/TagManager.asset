@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - PickUp
   - Projectile
+  - FOV
   layers:
   - Default
   - TransparentFX
