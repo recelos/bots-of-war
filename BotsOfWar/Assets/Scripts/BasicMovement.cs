@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
 {
-    [SerializeField]private Animator _animator;
-    [SerializeField]private float _moveSpeed = 5f;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private float _moveSpeed = 5f;
     Rigidbody2D _rigidbody2D;
 
     void Start()
