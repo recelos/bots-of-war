@@ -35,7 +35,8 @@ public class BotShoot : MonoBehaviour
 
     private void GiveSpeedToBullet(GameObject bullet)
     {
-        bullet.GetComponent<Rigidbody2D>().AddForce(((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)this.transform.position).normalized * _bulletSpeed);
+        //doesn't work, beacase main camera has been changed to cinemachinebrain
+        //bullet.GetComponent<Rigidbody2D>().AddForce(((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)this.transform.position).normalized * _bulletSpeed);
     }
     //checks if the bot is able to shoot
     private bool CanShoot()
