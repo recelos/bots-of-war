@@ -9,11 +9,12 @@ TagManager:
   - Floor
   - PickUp
   - Projectile
+  - FOV
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Walls
   - Water
   - UI
   - 
