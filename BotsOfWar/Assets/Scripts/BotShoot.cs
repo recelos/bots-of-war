@@ -9,18 +9,31 @@ public class BotShoot : MonoBehaviour
     [SerializeField] private int _bulletSpeed = 400;
     [SerializeField] private int _damage;
     private float _timeSinceLastShot;
+    private FieldOfView _fieldOfView;
+    private Transform[] _targetsInViewRadius;
+    private PlayerHealth _playerHealth;
+
+    private void Start()
+    {
+        _fieldOfView = GetComponent<FieldOfView>();
+        _playerHealth = GetComponent<PlayerHealth>();
+    }
 
     void Update()
     {
+        //get all targets in radius
+        _targetsInViewRadius = _fieldOfView.FindVisibleTargets().ToArray();
         //how much time has passed since last shot
         _timeSinceLastShot += Time.deltaTime;
-
-        if (Input.GetMouseButton(0) && CanShoot())
+        
+        //if there is a target in radius and bot can shoot
+        if (_targetsInViewRadius.Length > 0 && CanShoot() && !_playerHealth.dead)
         {
-            Shoot();
+            //shoot
+            Invoke("Shoot", 0.1f);
+            //reset time since last shot
             _timeSinceLastShot = 0;
         }
-
     }
 
     private void Shoot()
@@ -35,9 +48,18 @@ public class BotShoot : MonoBehaviour
 
     private void GiveSpeedToBullet(GameObject bullet)
     {
-        bullet.GetComponent<Rigidbody2D>().AddForce(((Vector2)Camera.allCameras[0].ScreenToWorldPoint(Input.mousePosition) - (Vector2)this.transform.position).normalized * _bulletSpeed);
+        //get direction to target
+        Vector2 direction = GetDirectionToTarget(_targetsInViewRadius[0]);
+        //set bullet speed
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * _bulletSpeed);
     }
-    //checks if the bot is able to shoot
+
+    // Calculate vector between bot and target
+    private Vector2 GetDirectionToTarget(Transform target)
+    {
+        return (target.position - transform.position).normalized;
+    }
+    
     private bool CanShoot()
     {
         return _timeSinceLastShot > 1f / (_fireRatePerMinute / 60f);
