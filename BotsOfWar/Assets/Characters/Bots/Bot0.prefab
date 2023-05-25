@@ -296,7 +296,7 @@ MonoBehaviour:
   _bullet: {fileID: 5650738134256993966, guid: 12b9b13c8f2903243ac9dc3d549430db, type: 3}
   _fireRatePerMinute: 500
   _bulletSpeed: 400
-  _damage: 0
+  _damage: 1
 --- !u!114 &2921547195409897522
 MonoBehaviour:
   m_ObjectHideFlags: 0
