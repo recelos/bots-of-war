@@ -5,8 +5,8 @@ using UnityEngine;
 public class BotShoot : MonoBehaviour
 {
     [SerializeField] private GameObject _bullet;
-    [SerializeField] private float _fireRatePerMinute = 500;
-    [SerializeField] private int _bulletSpeed = 400;
+    [SerializeField] private float _fireRatePerMinute;
+    [SerializeField] private int _bulletSpeed;
     [SerializeField] private int _damage;
     private float _timeSinceLastShot;
 
@@ -21,6 +21,17 @@ public class BotShoot : MonoBehaviour
             _timeSinceLastShot = 0;
         }
 
+    }
+
+    public float ShootAI(Vector2 enemyTarget)
+    {
+        GameObject bullet = Instantiate(_bullet, this.transform.position, this.transform.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce((enemyTarget).normalized * _bulletSpeed);
+        //set bullet a damage
+        bullet.GetComponent<Bullet>().Damage = _damage;
+        bullet.GetComponent<Bullet>().Source = this.gameObject;
+
+        return _fireRatePerMinute;
     }
 
     private void Shoot()
@@ -47,7 +58,7 @@ public class BotShoot : MonoBehaviour
     {
         if (other.CompareTag("PickUp"))
         {
-            _damage += 100;
+            _damage += 3;
         }
     }
 }

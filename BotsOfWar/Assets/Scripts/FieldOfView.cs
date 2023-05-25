@@ -6,9 +6,13 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] float _radius = 5f;
     [SerializeField] float _angle = 360f;
     [SerializeField] LayerMask _obstacleMask; // Layer mask for obstacles, e.g. walls, bot doesn't see through them
+    AgentMovement agentMovement;
+
+    private bool foundBot; // informs if the bot was found after one loop 
 
     private void Start()
     {
+        agentMovement = GetComponent<AgentMovement>();
         StartCoroutine(FindTargetsWithDelay(.2f));
     }
 
@@ -35,6 +39,8 @@ public class FieldOfView : MonoBehaviour
     // Get all targets in radius
     public List<Transform> FindVisibleTargets()
     {
+        foundBot = false;
+
         var visibleTargets = new List<Transform>();
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, _radius);
 
@@ -59,12 +65,18 @@ public class FieldOfView : MonoBehaviour
                     continue;
 
                 visibleTargets.Add(target);
-                Debug.Log("Target found: " + target.name);
+                if (target.CompareTag("Player") && agentMovement != null) // if bot sees another bot then inform him that he can attack instead of normal walking
+                {
+                    agentMovement.CanAttack(true, target, dirToTarget);
+                    foundBot = true;
+                }
             }
         }
+        if (!foundBot && agentMovement != null) // if the bot hasn't been found then change the bot action
+            agentMovement.CanAttack(false, null, default(Vector2));
+
         return visibleTargets;
     }
-
 
     // Draw field of view in editor
     private void OnDrawGizmosSelected()
