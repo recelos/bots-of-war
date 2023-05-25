@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         _healthBar = transform.Find("HealthBarKeeper/HealthBar1");
         _healthBarDecrement = 0;
     }
+
     public void TakeDamage(float damage)
     {
         // Take all necessary actions to modify health bar
@@ -33,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
         CheckIfDead();
     }
 
-    public bool CheckIfDead()
+    private void CheckIfDead()
     {
         if (_currentHealth <= 0 && !dead)
         {
@@ -43,10 +44,7 @@ public class PlayerHealth : MonoBehaviour
             var comp = _healthBar.GetComponentInParent<HealthBar>();
             comp.DeactivateBar();
             dead = true;
-
-            return true;
         }
-        return false;
     }
 
     private void HealthBarManipulation(float damage)

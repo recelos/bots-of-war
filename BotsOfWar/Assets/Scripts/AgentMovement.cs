@@ -18,12 +18,14 @@ public class AgentMovement : MonoBehaviour
 
     private FieldOfView _fieldOfView;
     private Transform[] _itemsInViewRadius;
+    private PlayerHealth _playerHealth;
 
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _fieldOfView = GetComponent<FieldOfView>();
+        _playerHealth = GetComponent<PlayerHealth>();
 
         // setup for nav mesh
         _agent.updatePosition = true;
@@ -31,14 +33,14 @@ public class AgentMovement : MonoBehaviour
         _agent.updateRotation = false;
         _agent.speed = _speed;
 
-        // random point generating
-        InvokeRepeating("InvokeGetRandomPointOnNavMesh", _interval, _interval);
+        // random point generating, with random interval
+        InvokeRepeating("InvokeGetRandomPointOnNavMesh", Random.Range(_interval - 1, _interval + 1), Random.Range(_interval - 1, _interval + 1));
     }
 
     private void Update()
     {
         //get all items in radius
-        _itemsInViewRadius = _fieldOfView.FindVisiblePickups().ToArray();
+        _itemsInViewRadius = _fieldOfView.FindVisibleTargets().Item2.ToArray();
 
         if (_itemsInViewRadius.Length > 0)
         {
@@ -46,6 +48,11 @@ public class AgentMovement : MonoBehaviour
             _target = _itemsInViewRadius[0].position;
         }
 
+        // if player is dead, bot stops so it doesn't play the animation of dying while moving XD
+        if (_playerHealth.dead)
+        {
+            _target = transform.position;
+        }
         _agent.SetDestination(_target);
 
         // Split the character based on the walk direction

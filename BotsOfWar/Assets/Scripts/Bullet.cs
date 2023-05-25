@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     {
         transform.SetParent(GameObject.Find("BulletContainer").transform);
     }
+
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (collider2D.gameObject.Equals(Source) ||
@@ -17,22 +18,16 @@ public class Bullet : MonoBehaviour
             collider2D.gameObject.CompareTag("PickUp"))
             return;
 
-        // (1 bullet = 1 damage point). If the bullet is destroyed then the player can receive damage from other bullets
+        // If the bullet is destroyed then the player can receive damage from other bullets
         if (collider2D.gameObject.CompareTag("Player"))
         {
             var playerHealth = collider2D.gameObject.GetComponent<PlayerHealth>();
 
             if (playerHealth != null)
             {
-                // For testing only!
-                // Debug.Log("PLAYER HIT");
-
                 playerHealth.TakeDamage(Damage);
             }
         }
-
-        // TODO: deal damage
         Destroy(gameObject);
     }
-
 }
