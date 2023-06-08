@@ -21,44 +21,31 @@ public class BotShoot : MonoBehaviour
 
     void Update()
     {
-        //get all targets in radius
-        _targetsInViewRadius = _fieldOfView.FindVisibleTargets().Item1.ToArray();
         //how much time has passed since last shot
         _timeSinceLastShot += Time.deltaTime;
-        
-        //if there is a target in radius and bot can shoot
-        if (_targetsInViewRadius.Length > 0 && CanShoot() && !_playerHealth.dead)
-        {
-            //shoot, but with a delay, later can be implemented based on bot's skill or sth
-            Invoke("Shoot", Random.Range(0.1f, 0.5f));
-            //reset time since last shot
-            _timeSinceLastShot = 0;
-        }
     }
 
-    private void Shoot()
+    public void Shoot(Vector2 direction)
     {
+        if(!CanShoot() || _fieldOfView.VisibleEnemies.Count == 0 || direction == null)
+            return;
         //create bullet at shootPoint position with shootPoint rotation
         GameObject bullet = Instantiate(_bullet, this.transform.position, this.transform.rotation);
-        GiveSpeedToBullet(bullet);
+      
+        //set bullet speed
+        bullet.GetComponent<Rigidbody2D>().AddForce((direction - (Vector2) transform.position).normalized * _bulletSpeed);
 
         //set bullet a damage
         bullet.GetComponent<Bullet>().Damage = _damage;
         bullet.GetComponent<Bullet>().Source = this.gameObject;
-
+        _timeSinceLastShot = 0;
         //destroy bullet after 5 seconds, in case it bugs out
         Destroy(bullet, 5f);
     }
 
     private void GiveSpeedToBullet(GameObject bullet)
     {
-        var direction = Vector2.zero;
         
-        if (_targetsInViewRadius.Length > 0)
-            direction = GetDirectionToTarget(_targetsInViewRadius[0]);
-
-        //set bullet speed
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction * _bulletSpeed);
     }
 
     // Calculate vector between bot and target
@@ -69,7 +56,7 @@ public class BotShoot : MonoBehaviour
     
     private bool CanShoot()
     {
-        return _timeSinceLastShot > 1f / (_fireRatePerMinute / 60f);
+        return _timeSinceLastShot > 1f / (_fireRatePerMinute / 60f) && !_playerHealth.dead;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

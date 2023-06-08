@@ -67,4 +67,7 @@ public class PlayerHealth : MonoBehaviour
         // When the player loses all their health, they are removed from the scene
         gameObject.SetActive(false);
     }
+    public float GetHealth(){
+        return _currentHealth;
+    }
 }

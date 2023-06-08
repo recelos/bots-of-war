@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 2577831769098955891}
   - component: {fileID: 4362855942067044801}
   - component: {fileID: 7943470040837973735}
+  - component: {fileID: 2675481012773726671}
   m_Layer: 0
   m_Name: Bot0
   m_TagString: Player
@@ -377,10 +378,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05599c4ee5a9ed440a91136a2760c9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {x: 0, y: 0, z: 0}
   _speed: 3
   _animator: {fileID: 6247146809805760316}
   _interval: 3
+--- !u!114 &2675481012773726671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5646686501195957889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073e4a55ba008504d82b1082b35305ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7554360196491287044
 GameObject:
   m_ObjectHideFlags: 0

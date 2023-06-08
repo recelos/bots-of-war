@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class AgentMovement : MonoBehaviour
 {
-    [SerializeField] Vector3 _target; // the target is calculated dynamically
+    public Vector3 Target {get;set;} // user sets where to move bot
     [SerializeField] private float _speed;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _interval; // interval between new point generating
@@ -33,27 +33,18 @@ public class AgentMovement : MonoBehaviour
         _agent.updateRotation = false;
         _agent.speed = _speed;
 
-        // random point generating, with random interval
-        InvokeRepeating("InvokeGetRandomPointOnNavMesh", Random.Range(_interval - 1, _interval + 1), Random.Range(_interval - 1, _interval + 1));
     }
 
     private void Update()
     {
-        //get all items in radius
-        _itemsInViewRadius = _fieldOfView.FindVisibleTargets().Item2.ToArray();
-
-        if (_itemsInViewRadius.Length > 0)
-        {
-            //if there is a target in radius
-            _target = _itemsInViewRadius[0].position;
-        }
+        
 
         // if player is dead, bot stops so it doesn't play the animation of dying while moving XD
         if (_playerHealth.dead)
         {
-            _target = transform.position;
+            Target = transform.position;
         }
-        _agent.SetDestination(_target);
+        _agent.SetDestination(Target);
 
         // Split the character based on the walk direction
         _positionLastFrame = _positionCurrentFrame;
@@ -71,8 +62,5 @@ public class AgentMovement : MonoBehaviour
         _animator.SetFloat("Magnitude", playerDiretion.magnitude);
     }
 
-    private void InvokeGetRandomPointOnNavMesh()
-    {
-        _target = NavMeshPoint.GetRandomPointOnNavMesh();
-    }
+    
 }
