@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private float _startingHealth;
+    private float _startingHealth;
     private float _currentHealth;
     public bool dead;
     private Transform _healthBar; // health bar of the player
@@ -66,5 +66,11 @@ public class PlayerHealth : MonoBehaviour
     {
         // When the player loses all their health, they are removed from the scene
         gameObject.SetActive(false);
+    }
+    
+    public void SetHealth(float health)
+    {
+        _startingHealth = health;
+        _currentHealth = _startingHealth;
     }
 }

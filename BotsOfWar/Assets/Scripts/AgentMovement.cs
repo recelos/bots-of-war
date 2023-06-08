@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class AgentMovement : MonoBehaviour
 {
     [SerializeField] Vector3 _target; // the target is calculated dynamically
-    [SerializeField] private float _speed;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _interval; // interval between new point generating
 
@@ -31,7 +30,7 @@ public class AgentMovement : MonoBehaviour
         _agent.updatePosition = true;
         _agent.updateUpAxis = false;
         _agent.updateRotation = false;
-        _agent.speed = _speed;
+        _agent.speed = 1;
 
         // random point generating, with random interval
         InvokeRepeating("InvokeGetRandomPointOnNavMesh", Random.Range(_interval - 1, _interval + 1), Random.Range(_interval - 1, _interval + 1));
@@ -74,5 +73,10 @@ public class AgentMovement : MonoBehaviour
     private void InvokeGetRandomPointOnNavMesh()
     {
         _target = NavMeshPoint.GetRandomPointOnNavMesh();
+    }
+    
+    public void SetMoveSpeed(float speed)
+    {
+        _agent.speed = speed;
     }
 }
