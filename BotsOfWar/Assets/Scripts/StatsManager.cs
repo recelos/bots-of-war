@@ -5,7 +5,7 @@ using UnityEngine;
 public class StatsManager : MonoBehaviour
 {
     //1 to 10 points per stat
-    private int _healthPoints = 5;
+    private int _healthPoints = 4;
     private int _speedPoints = 5;
     private int _fireRatePoints = 5;
     private int _bulletSpeedPoints = 5;
