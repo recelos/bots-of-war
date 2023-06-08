@@ -7,17 +7,18 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private float _startingHealth;
     private float _currentHealth;
-    private bool _dead;
+    public bool dead;
     private Transform _healthBar; // health bar of the player
     private float _healthBarDecrement; // how much should the health bar decrease after receiving a single hit
 
     private void Awake()
     {
         _currentHealth = _startingHealth;
-        _dead = false;
+        dead = false;
         _healthBar = transform.Find("HealthBarKeeper/HealthBar1");
         _healthBarDecrement = 0;
     }
+
     public void TakeDamage(float damage)
     {
         // Take all necessary actions to modify health bar
@@ -35,14 +36,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void CheckIfDead()
     {
-        if (_currentHealth <= 0 && !_dead)
+        if (_currentHealth <= 0 && !dead)
         {
-            this.GetComponent<BasicMovement>().enabled = false;
+            //this.GetComponent<BasicMovement>().enabled = false;
             // The dead animation starts
             _animator.SetTrigger("Dead");
             var comp = _healthBar.GetComponentInParent<HealthBar>();
             comp.DeactivateBar();
-            _dead = true;
+            dead = true;
         }
     }
 

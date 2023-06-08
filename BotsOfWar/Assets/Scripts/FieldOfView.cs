@@ -13,7 +13,7 @@ public class FieldOfView : MonoBehaviour
     }
 
     // Find targets every x seconds, so it doesn't have to be done every frame
-    IEnumerator<WaitForSeconds> FindTargetsWithDelay(float delay)
+    public IEnumerator<WaitForSeconds> FindTargetsWithDelay(float delay)
     {
         while (true)
         {
@@ -33,8 +33,9 @@ public class FieldOfView : MonoBehaviour
     }
 
     // Get all targets in radius
-    public List<Transform> FindVisibleTargets()
+    public (List<Transform>, List<Transform>) FindVisibleTargets()
     {
+        var visiblePickups = new List<Transform>();
         var visibleTargets = new List<Transform>();
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, _radius);
 
@@ -43,6 +44,7 @@ public class FieldOfView : MonoBehaviour
             var target = targetCollider.transform;
 
             // Skip if the target is the same as the object this script is attached to
+            // or if the target is not another bot
             if (target == transform)
                 continue;
 
@@ -58,13 +60,17 @@ public class FieldOfView : MonoBehaviour
                 if (hit.collider != null)
                     continue;
 
-                visibleTargets.Add(target);
+                if (target.tag == "PickUp")
+                    visiblePickups.Add(target);
+                
+                if (target.tag == "Player" && !target.GetComponent<PlayerHealth>().dead)
+                    visibleTargets.Add(target);
+
                 Debug.Log("Target found: " + target.name);
             }
         }
-        return visibleTargets;
+        return (visibleTargets, visiblePickups);
     }
-
 
     // Draw field of view in editor
     private void OnDrawGizmosSelected()
