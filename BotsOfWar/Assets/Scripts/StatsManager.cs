@@ -28,8 +28,6 @@ public class StatsManager : MonoBehaviour
         var text = textAsset.text;
         var botStats = JsonUtility.FromJson<BotStats>(text);
         
-        Debug.Log(botStats.Speed);
-
         var health = Validate(botStats.Health) ? botStats.Health : DefaultHealthPoints; 
         var speed = Validate(botStats.Speed) ? botStats.Speed : DefaultSpeedPoints; 
         var fireRate = Validate(botStats.FireRate) ? botStats.FireRate : DefaultFireRate; 
@@ -44,6 +42,6 @@ public class StatsManager : MonoBehaviour
 
     private bool Validate(int stat)
     {
-        return stat < 1 || stat > 10;
+        return !(stat < 1 || stat > 10);
     }
 }
