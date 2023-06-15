@@ -24,7 +24,8 @@ public class StatsManager : MonoBehaviour
 
     public void SetStats()
     {
-        var textAsset = (TextAsset)Resources.Load("stats", typeof(TextAsset));
+        var name = this.name;
+         var textAsset = (TextAsset)Resources.Load(name, typeof(TextAsset));
         var text = textAsset.text;
         var botStats = JsonUtility.FromJson<BotStats>(text);
         
