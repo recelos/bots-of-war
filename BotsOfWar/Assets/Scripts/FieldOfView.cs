@@ -65,8 +65,6 @@ public class FieldOfView : MonoBehaviour
                 
                 if (target.tag == "Player" && !target.GetComponent<PlayerHealth>().dead)
                     visibleTargets.Add(target);
-
-                Debug.Log("Target found: " + target.name);
             }
         }
         return (visibleTargets, visiblePickups);
