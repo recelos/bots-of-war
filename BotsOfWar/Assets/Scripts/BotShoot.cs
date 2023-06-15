@@ -43,11 +43,6 @@ public class BotShoot : MonoBehaviour
         Destroy(bullet, 5f);
     }
 
-    private void GiveSpeedToBullet(GameObject bullet)
-    {
-        
-    }
-
     // Calculate vector between bot and target
     private Vector2 GetDirectionToTarget(Transform target)
     {
