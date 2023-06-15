@@ -5,18 +5,18 @@ using UnityEngine;
 public class StatsManager : MonoBehaviour
 {
     //1 to 10 points per stat
-    private int _healthPoints = 4;
-    private int _speedPoints = 5;
-    private int _fireRatePoints = 5;
-    private int _bulletSpeedPoints = 5;
-    private int _bulletDamagePoints = 1;
+    private const int DefaultHealthPoints = 4;
+    private const int DefaultSpeedPoints = 5;
+    private const int DefaultFireRate = 5;
+    private const int DefaultBulletSpeed = 5;
+    private const int DefaultBulletDamage = 1;
 
     //use below to adjust settings
-    private int _multiplierHealth = 5;
-    private int _multiplierBulletSpeed = 70; 
-    private int _multiplierFireRate = 30; 
-    private float _multiplierSpeed = 0.4f;
-    private int _multiplierBulletDamage = 1; 
+    private const int HealthMultiplier = 5;
+    private const int BulletSpeedMultiplier = 70; 
+    private const int FireRateMultiplier = 30; 
+    private const float SpeedMultiplier= 0.4f;
+    private const int BulletDamageMultiplier = 1; 
     void Start()
     {
         Invoke("SetStats", 0.1f);
@@ -24,9 +24,14 @@ public class StatsManager : MonoBehaviour
 
     public void SetStats()
     {
-        gameObject.GetComponent<PlayerHealth>().SetHealth(_healthPoints * _multiplierHealth);
-        gameObject.GetComponent<BotShoot>().SetBulletStats(_bulletSpeedPoints * _multiplierBulletSpeed,
-            _bulletDamagePoints * _multiplierBulletDamage, _fireRatePoints * _multiplierFireRate);
-        gameObject.GetComponent<AgentMovement>().SetMoveSpeed(_speedPoints * _multiplierSpeed);
+        gameObject.GetComponent<PlayerHealth>().SetHealth(DefaultHealthPoints * HealthMultiplier);
+        gameObject.GetComponent<BotShoot>().SetBulletStats(DefaultBulletSpeed * BulletSpeedMultiplier,
+            DefaultBulletDamage * BulletDamageMultiplier, DefaultFireRate * FireRateMultiplier);
+        gameObject.GetComponent<AgentMovement>().SetMoveSpeed(DefaultSpeedPoints * SpeedMultiplier);
+    }
+
+    private bool ValidateStats(int stat)
+    {
+        return stat < 1 || stat > 10
     }
 }
