@@ -29,14 +29,20 @@ public class StatsManager : MonoBehaviour
         var botStats = JsonUtility.FromJson<BotStats>(text);
         
         Debug.Log(botStats.Speed);
-        
-        gameObject.GetComponent<PlayerHealth>().SetHealth(botStats.Health * HealthMultiplier);
-        gameObject.GetComponent<BotShoot>().SetBulletStats(botStats.BulletSpeed * BulletSpeedMultiplier,
-            botStats.BulletDamage * BulletDamageMultiplier, botStats.FireRate * FireRateMultiplier);
-        gameObject.GetComponent<AgentMovement>().SetMoveSpeed(botStats.Speed * SpeedMultiplier);
+
+        var health = Validate(botStats.Health) ? botStats.Health : DefaultHealthPoints; 
+        var speed = Validate(botStats.Speed) ? botStats.Speed : DefaultSpeedPoints; 
+        var fireRate = Validate(botStats.FireRate) ? botStats.FireRate : DefaultFireRate; 
+        var bulletSpeed = Validate(botStats.BulletSpeed) ? botStats.BulletSpeed : DefaultBulletSpeed; 
+        var bulletDamage = Validate(botStats.BulletDamage) ? botStats.BulletDamage : DefaultBulletDamage;
+
+        gameObject.GetComponent<PlayerHealth>().SetHealth(health * HealthMultiplier);
+        gameObject.GetComponent<BotShoot>().SetBulletStats(bulletSpeed * BulletSpeedMultiplier,
+            bulletDamage * BulletDamageMultiplier, fireRate * FireRateMultiplier);
+        gameObject.GetComponent<AgentMovement>().SetMoveSpeed(speed * SpeedMultiplier);
     }
 
-    private bool ValidateStats(int stat)
+    private bool Validate(int stat)
     {
         return stat < 1 || stat > 10;
     }
