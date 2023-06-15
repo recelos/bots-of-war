@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BotShoot : MonoBehaviour
 {
-     [SerializeField] private GameObject _bullet;
-    [SerializeField] private float _fireRatePerMinute = 500;
-    [SerializeField] private int _bulletSpeed = 400;
-    [SerializeField] private int _damage;
+    [SerializeField] private GameObject _bullet;
+    private float _fireRatePerMinute = 500;
+    private int _bulletSpeed = 400;
+    private int _damage;
     private float _timeSinceLastShot;
     private FieldOfView _fieldOfView;
     private Transform[] _targetsInViewRadius;
