@@ -7,8 +7,13 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] float _angle = 360f;
     [SerializeField] LayerMask _obstacleMask; // Layer mask for obstacles, e.g. walls, bot doesn't see through them
 
+    public List<Transform> VisibleEnemies {get; private set;}
+    public List<Transform> VisiblePickUps {get; private set;}
     private void Start()
     {
+        //Assigns just so Unity doesnt throw errors at the start of the game
+        VisibleEnemies = new List<Transform>();
+        VisiblePickUps = new List<Transform>();
         StartCoroutine(FindTargetsWithDelay(.2f));
     }
 
@@ -19,6 +24,7 @@ public class FieldOfView : MonoBehaviour
         {
             yield return new WaitForSeconds(delay);
             FindVisibleTargets();
+            
         }
     }
 
@@ -33,7 +39,7 @@ public class FieldOfView : MonoBehaviour
     }
 
     // Get all targets in radius
-    public (List<Transform>, List<Transform>) FindVisibleTargets()
+    private void FindVisibleTargets()
     {
         var visiblePickups = new List<Transform>();
         var visibleTargets = new List<Transform>();
@@ -67,7 +73,8 @@ public class FieldOfView : MonoBehaviour
                     visibleTargets.Add(target);
             }
         }
-        return (visibleTargets, visiblePickups);
+        VisibleEnemies = visibleTargets;
+        VisiblePickUps = visiblePickups;
     }
 
     // Draw field of view in editor
