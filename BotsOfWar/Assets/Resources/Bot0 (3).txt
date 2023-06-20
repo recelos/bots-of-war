@@ -1,7 +1,7 @@
 {
-  "Health": 4,
-  "Speed": 4,
+  "Health": 5,
+  "Speed": 5,
   "FireRate": 5,
   "BulletSpeed": 5,
-  "BulletDamage": 1
+  "BulletDamage": 5
 }
