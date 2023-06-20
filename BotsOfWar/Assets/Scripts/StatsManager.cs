@@ -35,10 +35,25 @@ public class StatsManager : MonoBehaviour
         var bulletSpeed = Validate(botStats.BulletSpeed) ? botStats.BulletSpeed : DefaultBulletSpeed; 
         var bulletDamage = Validate(botStats.BulletDamage) ? botStats.BulletDamage : DefaultBulletDamage;
 
+        ValidateStatsLimit(ref health, ref speed, ref fireRate, ref bulletSpeed, ref bulletDamage);
+
         gameObject.GetComponent<PlayerHealth>().SetHealth(health * HealthMultiplier);
         gameObject.GetComponent<BotShoot>().SetBulletStats(bulletSpeed * BulletSpeedMultiplier,
             bulletDamage * BulletDamageMultiplier, fireRate * FireRateMultiplier);
         gameObject.GetComponent<AgentMovement>().SetMoveSpeed(speed * SpeedMultiplier);
+    }
+
+    private void ValidateStatsLimit(ref int health, ref int speed, ref int fireRate, ref int bulletSpeed, ref int bulletDamage)
+    {
+        var sumStats = health + speed + fireRate + bulletSpeed + bulletDamage;
+        if (sumStats > 25)
+        {
+            health = 5;
+            speed = 5;
+            fireRate = 5;
+            bulletSpeed = 5;
+            bulletDamage = 5;
+        }
     }
 
     private bool Validate(int stat)
