@@ -38,7 +38,7 @@ public class SampleBotLogic : MonoBehaviour
         }
         else
         {
-            agentMovement.Target = NavMeshPoint.GetRandomPointOnNavMesh();
+            //agentMovement.Target = NavMeshPoint.GetRandomPointOnNavMesh();
 
             _timeSinceLastRandomPoint+=Time.deltaTime;
             if(_timeSinceLastRandomPoint >= 1){
