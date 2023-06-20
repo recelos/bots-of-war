@@ -48,11 +48,7 @@ public class StatsManager : MonoBehaviour
 		}
 
         Validate(botStats);
-
-        gameObject.GetComponent<PlayerHealth>().SetHealth(botStats.Health * HealthMultiplier);
-        gameObject.GetComponent<BotShoot>().SetBulletStats(botStats.BulletSpeed * BulletSpeedMultiplier,
-            botStats.BulletDamage * BulletDamageMultiplier, botStats.FireRate * FireRateMultiplier);
-        gameObject.GetComponent<AgentMovement>().SetMoveSpeed(botStats.Speed * SpeedMultiplier);
+		Set(botStats);
     }
 
     private void Validate(BotStats stats)
@@ -60,11 +56,19 @@ public class StatsManager : MonoBehaviour
         var sum = stats.Health + stats.Speed + stats.FireRate + stats.BulletSpeed + stats.BulletDamage;
         if (sum > 25)
         {
-            stats.Health = 5;
-            stats.Speed = 5;
-            stats.FireRate = 5;
-            stats.BulletSpeed = 5;
-            stats.BulletDamage = 5;
+            stats.Health = DefaultHealthPoints;
+            stats.Speed = DefaultSpeedPoints;
+            stats.FireRate = DefaultFireRate;
+            stats.BulletSpeed = DefaultBulletSpeed;
+            stats.BulletDamage = DefaultBulletDamage;
         }
     }
+
+	private void Set(BotStats botStats)
+	{
+		gameObject.GetComponent<PlayerHealth>().SetHealth(botStats.Health * HealthMultiplier);
+        gameObject.GetComponent<BotShoot>().SetBulletStats(botStats.BulletSpeed * BulletSpeedMultiplier,
+            botStats.BulletDamage * BulletDamageMultiplier, botStats.FireRate * FireRateMultiplier);
+        gameObject.GetComponent<AgentMovement>().SetMoveSpeed(botStats.Speed * SpeedMultiplier);
+	}
 }
