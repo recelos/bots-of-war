@@ -1,6 +1,6 @@
 {
   "Health": 4,
-  "Speed": 1,
+  "Speed": 10000000,
   "FireRate": 5,
   "BulletSpeed": 5,
   "BulletDamage": 1
