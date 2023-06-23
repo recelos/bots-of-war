@@ -73,4 +73,7 @@ public class PlayerHealth : MonoBehaviour
         _startingHealth = health;
         _currentHealth = _startingHealth;
     }
+    public float GetHealth(){
+        return _currentHealth;
+    }
 }
